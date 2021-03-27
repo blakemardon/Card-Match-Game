@@ -1,31 +1,51 @@
 #include "Icon.h"
 
-Icon::Icon(Icons iconName) : Icon(iconName, 1.0)
+Icon::Icon(Icons iconName, int x, int y) : Icon(iconName,x ,y , 1.0)
 {
 }
 
-Icon::Icon(Icons iconName, float size) : Icon(iconName, size, Color(PaletteColors::Black))
+Icon::Icon(Icons iconName, int x, int y, float size) : Icon(iconName, x, y, size, Color(PaletteColors::Black))
 {
 }
 
-Icon::Icon(Icons iconName, Color fill) : Icon(iconName, 1.0, fill)
+Icon::Icon(Icons iconName, int x, int y, Color fill) : Icon(iconName, x, y, 1.0, fill)
 {
 }
 
-Icon::Icon(Icons iconName, Color fill, Color lines) : Icon(iconName, 1.0, fill, lines)
+Icon::Icon(Icons iconName, int x, int y, Color fill, Color lines) : Icon(iconName, x, y, 1.0, fill, lines)
 {
 }
 
-Icon::Icon(Icons iconName, float size, Color fill) : Icon(iconName, size, fill, Color(PaletteColors::Black, 0.0))
+Icon::Icon(Icons iconName, int x, int y, float size, Color fill) : Icon(iconName, x, y, size, fill, Color(PaletteColors::Black, 0.0))
 {
 }
 
-Icon::Icon(Icons iconName, float size, Color fill, Color lines)
+Icon::Icon(Icons iconName, int x, int y, float size, Color fill, Color lines)
 {
 	this->sizeMultiplyer = size;
 	this->fill = fill;
 	this->lines = lines;
 	this->iconName = iconName;
+	this->xpos = x;
+	this->ypos = y;
+}
+
+void Icon::setX(int x)
+{
+	this->xpos = x;
+}
+void Icon::setY(int y)
+{
+	this->ypos = y;
+}
+
+void Icon::setVisible(bool val)
+{
+	isVisable = val;
+}
+
+void Icon::draw() {
+	Icon::draw(xpos, ypos);
 }
 
 void Icon::draw(int x, int y)
@@ -122,6 +142,7 @@ void Icon::draw(int x, int y)
 	}
 
 }
+
 /* Template for making new icons
 *
 	case Icons:::

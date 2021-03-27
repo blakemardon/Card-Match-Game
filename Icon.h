@@ -12,13 +12,17 @@ enum class Icons
 class Icon : IDrawable
 {
 public:
-	Icon(Icons iconName);
-	Icon(Icons iconName, float size);
-	Icon(Icons iconName, Color fill);
-	Icon(Icons iconName, Color fill, Color lines);
-	Icon(Icons iconName, float size, Color fill);
-	Icon(Icons iconName, float size, Color fill, Color lines);
+	Icon(Icons iconName, int x, int y);
+	Icon(Icons iconName, int x, int y, float size);
+	Icon(Icons iconName, int x, int y, Color fill);
+	Icon(Icons iconName, int x, int y, Color fill, Color lines);
+	Icon(Icons iconName, int x, int y, float size, Color fill);
+	Icon(Icons iconName, int x, int y, float size, Color fill, Color lines);
+	void draw();
 	void draw(int x, int y);
+	void setX(int x);
+	void setY(int y);
+	void setVisible(bool val);
 private:
 	Color fill;
 	Color lines;

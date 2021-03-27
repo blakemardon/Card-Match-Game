@@ -142,6 +142,7 @@
     <ClCompile Include="CardComponent.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Icon.cpp" />
+    <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>

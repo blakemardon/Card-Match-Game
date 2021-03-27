@@ -19,8 +19,10 @@ void init(void)
 
 void display(void)
 {
-	Icon i(Icons::Cat, 0.5, Color(PaletteColors::Blue, 1.0), Color(PaletteColors::Yellow));
-	i.draw(250, 250);
+	Icon a(Icons::Cat, 250, 250, 0.5, Color(PaletteColors::Blue, 1.0), Color(PaletteColors::Yellow));
+	Icon b(Icons::Square, 100, 100);
+	Icon c(Icons::Triangle, 400, 400, PaletteColors::Red, PaletteColors::Cyan);
+	IDrawable::drawObjects();
 	/* color class test
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
