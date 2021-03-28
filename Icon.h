@@ -9,9 +9,10 @@ enum class Icons
 	Cat
 };
 
-class Icon : IDrawable
+class Icon : public IDrawable
 {
 public:
+	Icon();
 	Icon(Icons iconName, int x, int y);
 	Icon(Icons iconName, int x, int y, float size);
 	Icon(Icons iconName, int x, int y, Color fill);
@@ -20,9 +21,6 @@ public:
 	Icon(Icons iconName, int x, int y, float size, Color fill, Color lines);
 	void draw();
 	void draw(int x, int y);
-	void setX(int x);
-	void setY(int y);
-	void setVisible(bool val);
 private:
 	Color fill;
 	Color lines;

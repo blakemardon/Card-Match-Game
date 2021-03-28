@@ -5,11 +5,14 @@
 #include <windows.h>
 #include "Icon.h"
 #include "Color.h"
+#include "CardComponent.h"
+#include "IClickable.h"
 
+CardComponent* card = nullptr;
 
 void init(void)
 {
-	glClearColor(Color(PaletteColors::DarkGreen));//get white background color
+	glClearColor(PaletteColors::DarkGreen);//get white background color
 	glColor3f(0.0f, 0.0f, 0.0f);//set drawing color
 	glPointSize(4.0);//a dot is 4x4
 	glMatrixMode(GL_PROJECTION);
@@ -17,29 +20,22 @@ void init(void)
 	gluOrtho2D(0.0, 500.0, 0.0, 500.0);
 }
 
+void initilizeCard() {
+	Icon cat(Icons::Cat, 250, 250, 1, PaletteColors::Tan, PaletteColors::Yellow);
+	card = new CardComponent(cat, 250, 250);
+}
+
 void display(void)
 {
-	Icon a(Icons::Cat, 250, 250, 0.5, Color(PaletteColors::Blue, 1.0), Color(PaletteColors::Yellow));
-	Icon b(Icons::Square, 100, 100);
-	Icon c(Icons::Triangle, 400, 400, PaletteColors::Red, PaletteColors::Cyan);
 	IDrawable::drawObjects();
-	/* color class test
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			Color c(static_cast<Colors>(i * 4 + j));
-			c.applyColor();
-			//glColor3f(1.0f, 1.0f, 0.0f);
-			glBegin(GL_POLYGON);
-			glVertex2i(i * 125, j * 125);
-			glVertex2i(i * 125, j * 125 + 125);
-			glVertex2i(i * 125 + 125, j * 125 + 125);
-			glVertex2i(i * 125 + 125, j * 125);
-			glEnd();
-			glFlush();
-		}
-	}
-	*/
 	glFlush();
+}
+
+void onMouseButton(int button, int state, int x, int y) {
+	if (GLUT_DOWN == state) {
+		IClickable::triggerClicks(x, y);
+		glutPostRedisplay();
+	}
 }
 
 int main(int argc, char** argv)
@@ -50,7 +46,9 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(100, 150); //set window position on screen
 	glutCreateWindow(argv[0]);//open screen window
 	init();
+	initilizeCard();
 	glutDisplayFunc(display);//points to display function
+	glutMouseFunc(onMouseButton);
 	glutMainLoop();//go into perpetual loop
 	return 0;
 }
