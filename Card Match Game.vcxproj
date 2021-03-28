@@ -145,6 +145,7 @@
     <ClCompile Include="Icon.cpp" />
     <ClCompile Include="IDrawable.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="TextComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CardComponent.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="IClickable.h" />
     <ClInclude Include="Icon.h" />
     <ClInclude Include="IDrawable.h" />
+    <ClInclude Include="TextComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

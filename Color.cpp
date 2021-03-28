@@ -1,10 +1,5 @@
 #include "Color.h"
 
-Color Color::colorLookup(PaletteColors color)
-{
-	return Color();
-}
-
 Color::Color()
 {
 	setColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -1,4 +1,6 @@
 #include <GL/glut.h>
+#include <gl/GL.h>
+#include <gl/GLU.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -7,6 +9,7 @@
 #include "Color.h"
 #include "CardComponent.h"
 #include "IClickable.h"
+#include "TextComponent.h"
 
 CardComponent* card = nullptr;
 
@@ -18,17 +21,20 @@ void init(void)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();//replace current matrix with identity matrix
 	gluOrtho2D(0.0, 500.0, 0.0, 500.0);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 }
 
 void initilizeCard() {
-	Icon cat(Icons::Cat, 250, 250, 1, PaletteColors::Tan, PaletteColors::Yellow);
+	Icon cat(Icons::Cat, 250, 250, 0.8, PaletteColors::Tan, PaletteColors::Yellow);
 	card = new CardComponent(cat, 250, 250);
 }
 
 void display(void)
 {
-	IDrawable::drawObjects();
-	glFlush();
+    TextComponent text("TEST TEST", PaletteColors::Red, 500,482, Anchor::Center);
+    text.setDrawDepth(0);
+    IDrawable::drawObjects();
+    glFlush();
 }
 
 void onMouseButton(int button, int state, int x, int y) {
