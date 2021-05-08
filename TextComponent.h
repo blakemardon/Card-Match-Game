@@ -13,6 +13,7 @@ enum class Anchor {
 class TextComponent : public IDrawable
 {
 public:
+	TextComponent();
 	TextComponent(std::string text);
 	TextComponent(std::string text, int x, int y);
 	TextComponent(std::string text, Color color);

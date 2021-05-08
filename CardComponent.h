@@ -3,6 +3,7 @@
 #include "IDrawable.h"
 #include "Color.h"
 #include "Icon.h"
+#include "CardMatch.h"
 
 enum class Facing
 {
@@ -13,7 +14,7 @@ enum class Facing
 class CardComponent : public IClickable, public IDrawable
 {
 public:
-	CardComponent(Icon &icon, int x, int y);
+	CardComponent(Icon &icon, int x, int y, double xScale, double yScale, CardMatch* game);
 	void onClick();
 	bool checkClicked(int x, int y);
 	void draw(int x, int y);
@@ -23,6 +24,7 @@ private:
 	Facing face;
 	Icon icon;
 	bool isVisable;
-	float sizeMultiplyer;
+	float xMultiplyer;
+	float yMultiplyer;
+	CardMatch* currentGame;
 };
-

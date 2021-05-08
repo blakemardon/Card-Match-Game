@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CardComponent.cpp" />
+    <ClCompile Include="CardMatch.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="IClickable.cpp" />
     <ClCompile Include="Icon.cpp" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CardComponent.h" />
+    <ClInclude Include="CardMatch.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="IClickable.h" />
     <ClInclude Include="Icon.h" />

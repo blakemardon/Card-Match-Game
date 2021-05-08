@@ -1,5 +1,9 @@
 #include "TextComponent.h"
 
+TextComponent::TextComponent() : TextComponent("")
+{
+}
+
 TextComponent::TextComponent(std::string text) : TextComponent(text, 0, 0)
 {
 }
@@ -23,23 +27,26 @@ TextComponent::TextComponent(std::string text, Color color, int x, int y, Anchor
     this->xpos = x;
     this->ypos = y;
     this->fontColor = color;
+    setDrawDepth(0);
 }
 
 void TextComponent::draw()
 {
-    glColor(fontColor);
-    if (anchor == Anchor::Left) {
-        glRasterPos2i(xpos, ypos);
+    if (isVisable) {
+        glColor(fontColor);
+        if (anchor == Anchor::Left) {
+            glRasterPos2i(xpos, ypos);
+        }
+        else if (anchor == Anchor::Right) {
+            int stringWidth = text.length() * 10;
+            glRasterPos2i(xpos - stringWidth, ypos);
+        }
+        else {
+            int stringWidth = text.length() * 10;
+            glRasterPos2i(xpos - stringWidth / 2, ypos);
+        }
+        printString();
     }
-    else if (anchor == Anchor::Right) {
-        int stringWidth = text.length() * 10;
-        glRasterPos2i(xpos - stringWidth, ypos);
-    }
-    else {
-        int stringWidth = text.length() * 10;
-        glRasterPos2i(xpos - stringWidth / 2, ypos);
-    }
-    printString();
 }
 
 void TextComponent::setText(std::string text)

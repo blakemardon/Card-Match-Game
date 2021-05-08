@@ -23,7 +23,7 @@ enum class PaletteColors {
 class Color
 {
 public:
-	static Color colorLookup(PaletteColors color);
+	//static Color colorLookup(PaletteColors color);
 	Color();
 	Color(PaletteColors paletteColor);
 	Color(PaletteColors paletteColor, float a);

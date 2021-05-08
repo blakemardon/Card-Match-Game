@@ -1,4 +1,7 @@
 #pragma once
+#include <GL/glut.h>
+#include <gl/GL.h>
+#include <gl/GLU.h>
 #include <vector>
 
 class IDrawable

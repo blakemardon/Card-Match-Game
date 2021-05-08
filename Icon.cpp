@@ -1,5 +1,6 @@
 #include "Icon.h"
 
+
 Icon::Icon() : Icon(Icons::Square, 0, 0) {
 
 }
@@ -115,7 +116,7 @@ void Icon::draw(int x, int y)
 				glVertex2i(x + (10 * sizeMultiplyer), y + (0 * sizeMultiplyer));
 				glVertex2i(x + (20 * sizeMultiplyer), y + (0 * sizeMultiplyer));
 				glEnd();
-				glBegin(GL_LINES);
+				glBegin(GL_LINES); // wiskers
 				glVertex2i(x - (10 * sizeMultiplyer), y - (20 * sizeMultiplyer));
 				glVertex2i(x - (40 * sizeMultiplyer), y - (0 * sizeMultiplyer));
 				glVertex2i(x - (10 * sizeMultiplyer), y - (25 * sizeMultiplyer));
@@ -129,6 +130,209 @@ void Icon::draw(int x, int y)
 				glVertex2i(x + (10 * sizeMultiplyer), y - (30 * sizeMultiplyer));
 				glVertex2i(x + (40 * sizeMultiplyer), y - (50 * sizeMultiplyer));
 				glEnd();
+			}
+			break;
+		case Icons::Bars:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y + (0 * sizeMultiplyer));
+				glVertex2i(x - (30 * sizeMultiplyer), y + (0 * sizeMultiplyer));
+				glVertex2i(x - (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_POLYGON);
+				glVertex2i(x - (10 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x - (10 * sizeMultiplyer), y - (20 * sizeMultiplyer));
+				glVertex2i(x + (10 * sizeMultiplyer), y - (20 * sizeMultiplyer));
+				glVertex2i(x + (10 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_POLYGON);
+				glVertex2i(x + (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x + (30 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y + (0 * sizeMultiplyer));
+				glVertex2i(x - (30 * sizeMultiplyer), y + (0 * sizeMultiplyer));
+				glVertex2i(x - (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (10 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x - (10 * sizeMultiplyer), y - (20 * sizeMultiplyer));
+				glVertex2i(x + (10 * sizeMultiplyer), y - (20 * sizeMultiplyer));
+				glVertex2i(x + (10 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x + (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x + (30 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+			}
+			break;
+		case Icons::Envelope:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (0 * sizeMultiplyer), y - (0 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glEnd();
+			}
+			break;
+		case Icons::Circle:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (cos(i * 3.14159 / 90) * 50 * sizeMultiplyer), y + (sin(i * 3.14159 / 90) * 50 * sizeMultiplyer));
+				}
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (cos(i * 3.14159 / 90) * 50 * sizeMultiplyer), y + (sin(i * 3.14159 / 90) * 50 * sizeMultiplyer));
+				}
+				glEnd();
+			}
+			break;
+		case Icons::Female:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (cos(i * 3.14159 / 90) * 30 * sizeMultiplyer), y + (20 * sizeMultiplyer + sin(i * 3.14159 / 90) * 30 * sizeMultiplyer));
+				}
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (cos(i * 3.14159 / 90) * 30 * sizeMultiplyer), y + (20 * sizeMultiplyer + sin(i * 3.14159 / 90) * 30 * sizeMultiplyer));
+				}
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (0 * sizeMultiplyer), y - (10 * sizeMultiplyer));
+				glVertex2i(x - (0 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (20 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glVertex2i(x + (20 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glEnd();
+			}
+			break;
+		case Icons::Male:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (10 * sizeMultiplyer + cos(i * 3.14159 / 90) * 35 * sizeMultiplyer), y + (10 * sizeMultiplyer + sin(i * 3.14159 / 90) * 35 * sizeMultiplyer));
+				}
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (10 * sizeMultiplyer + cos(i * 3.14159 / 90) * 35 * sizeMultiplyer), y + (10 * sizeMultiplyer + sin(i * 3.14159 / 90) * 35 * sizeMultiplyer));
+				}
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x - (14 * sizeMultiplyer), y - (14 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+				glEnd();
+			}
+			break;
+		case Icons::Card:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				glVertex2i(x - (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glVertex2i(x - (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+				glVertex2i(x + (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+				glEnd();
+				glBegin(GL_POLYGON);
+				glVertex2i(x - (45 * sizeMultiplyer), y + (20 * sizeMultiplyer));
+				glVertex2i(x + (45 * sizeMultiplyer), y + (20 * sizeMultiplyer));
+				glVertex2i(x + (45 * sizeMultiplyer), y - (0 * sizeMultiplyer));
+				glVertex2i(x - (45 * sizeMultiplyer), y - (0 * sizeMultiplyer));
+				glEnd();
+			}
+			break;
+		case Icons::Smile:
+			if (fill.getAlpha() != 0) {
+				fill.applyColor();
+				glBegin(GL_POLYGON);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (cos(i * 3.14159 / 90) * 50 * sizeMultiplyer), y + (sin(i * 3.14159 / 90) * 50 * sizeMultiplyer));
+				}
+				glEnd();
+			}
+			if (lines.getAlpha() != 0) {
+				lines.applyColor();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (cos(i * 3.14159 / 90) * 50 * sizeMultiplyer), y + (sin(i * 3.14159 / 90) * 50 * sizeMultiplyer));
+				}
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x + (20 * sizeMultiplyer + cos(i * 3.14159 / 90) * 10 * sizeMultiplyer), y + (20 * sizeMultiplyer + sin(i * 3.14159 / 90) * 10 * sizeMultiplyer));
+				}
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 0; i < 180; i++) {
+					glVertex2i(x - (20 * sizeMultiplyer + cos(i * 3.14159 / 90) * 10 * sizeMultiplyer), y + (20 * sizeMultiplyer + sin(i * 3.14159 / 90) * 10 * sizeMultiplyer));
+				}
+				glEnd();
+				glBegin(GL_LINE_LOOP);
+				for (int i = 105; i < 165; i++) {
+					glVertex2i(x - (0 * sizeMultiplyer + cos(i * 3.14159 / 90) * 35 * sizeMultiplyer), y + (0 * sizeMultiplyer + sin(i * 3.14159 / 90) * 35 * sizeMultiplyer));
+				}
+				glEnd();
+
 			}
 			break;
 		}

@@ -6,7 +6,14 @@ enum class Icons
 {
 	Square,
 	Triangle,
-	Cat
+	Cat,
+	Bars,
+	Envelope,
+	Circle,
+	Male,
+	Female,
+	Card,
+	Smile
 };
 
 class Icon : public IDrawable

@@ -1,6 +1,6 @@
 #include "CardComponent.h"
 
-CardComponent::CardComponent(Icon &icon, int x, int y)
+CardComponent::CardComponent(Icon &icon, int x, int y, double xScale, double yScale, CardMatch* game)
 {
 	this->icon = icon;
 	this->icon.setDrawDepth(4);
@@ -8,18 +8,21 @@ CardComponent::CardComponent(Icon &icon, int x, int y)
 	this->setDrawDepth(3);
 	this->xpos = x;
 	this->ypos = y;
-	sizeMultiplyer = 1;
+	xMultiplyer = xScale;
+	yMultiplyer = yScale;
+	currentGame = game;
 }
 
 void CardComponent::onClick()
 {
 	flip();
+	currentGame->cardClicked(this);
 }
 
 bool CardComponent::checkClicked(int x, int y)
 {
-	if (x >= xpos - (50 * sizeMultiplyer) && x <= xpos + (50 * sizeMultiplyer)) {
-		if (y >= ypos - (50 * sizeMultiplyer) && y <= ypos + (50 * sizeMultiplyer)) {
+	if (x >= xpos - (50 * xMultiplyer) && x <= xpos + (50 * yMultiplyer)) {
+		if (y >= ypos - (50 * xMultiplyer) && y <= ypos + (50 * yMultiplyer)) {
 			return true;
 		}
 	}
@@ -32,58 +35,58 @@ void CardComponent::draw(int x, int y)
 		icon.setVisible(true);
 		glColor(PaletteColors::White);
 		glBegin(GL_POLYGON);
-		glVertex2i(x - (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
-		glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y - (50 * yMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y - (50 * yMultiplyer));
 		glEnd();
 	}
 	else {
 		icon.setVisible(false);
 		glColor(PaletteColors::Blue);
 		glBegin(GL_POLYGON);
-		glVertex2i(x - (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
-		glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y - (50 * yMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y - (50 * yMultiplyer));
 		glEnd();
 		glColor(PaletteColors::Yellow);
 		glBegin(GL_LINE_LOOP);
-		glVertex2i(x - (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
-		glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y - (50 * yMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y - (50 * yMultiplyer));
 		glEnd();
 		glBegin(GL_LINES);
-		glVertex2i(x - (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
-		glVertex2i(x - (30 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y + (30 * yMultiplyer));
+		glVertex2i(x - (30 * xMultiplyer), y + (50 * yMultiplyer));
 
-		glVertex2i(x - (50 * sizeMultiplyer), y - (10 * sizeMultiplyer));
-		glVertex2i(x + (10 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y - (10 * yMultiplyer));
+		glVertex2i(x + (10 * xMultiplyer), y + (50 * yMultiplyer));
 
-		glVertex2i(x - (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y - (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y + (50 * yMultiplyer));
 
-		glVertex2i(x - (10 * sizeMultiplyer), y - (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y + (10 * sizeMultiplyer));
+		glVertex2i(x - (10 * xMultiplyer), y - (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y + (10 * yMultiplyer));
 
-		glVertex2i(x + (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
+		glVertex2i(x + (30 * xMultiplyer), y - (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y - (30 * yMultiplyer));
 
-		glVertex2i(x + (30 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y + (30 * sizeMultiplyer));
+		glVertex2i(x + (30 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y + (30 * yMultiplyer));
 
-		glVertex2i(x - (10 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y - (10 * sizeMultiplyer));
+		glVertex2i(x - (10 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y - (10 * yMultiplyer));
 
-		glVertex2i(x - (50 * sizeMultiplyer), y + (50 * sizeMultiplyer));
-		glVertex2i(x + (50 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y + (50 * yMultiplyer));
+		glVertex2i(x + (50 * xMultiplyer), y - (50 * yMultiplyer));
 
-		glVertex2i(x - (50 * sizeMultiplyer), y + (10 * sizeMultiplyer));
-		glVertex2i(x + (10 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y + (10 * yMultiplyer));
+		glVertex2i(x + (10 * xMultiplyer), y - (50 * yMultiplyer));
 
-		glVertex2i(x - (50 * sizeMultiplyer), y - (30 * sizeMultiplyer));
-		glVertex2i(x - (30 * sizeMultiplyer), y - (50 * sizeMultiplyer));
+		glVertex2i(x - (50 * xMultiplyer), y - (30 * yMultiplyer));
+		glVertex2i(x - (30 * xMultiplyer), y - (50 * yMultiplyer));
 
 		glEnd();
 	}
