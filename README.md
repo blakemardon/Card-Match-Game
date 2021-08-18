@@ -51,7 +51,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is intended to be able to maintain a list of all parts availible in inventory for a automotive parts store. This project was an initial version to show competency in creating a system that is easy to use. Future versions would include moving from a XML file for storing data to a database as well as add features based on what is needed for the software to increase usability.
+This project was a final project for our graphics programming class. The intent was to display proficiency with the OpenGL library with respect to drawing shapes on the screen as well as maintaining game logic. It was decided early in the project that implimenting a 2D drawing system with depth and event handeling would be nessisary to make the project easy to maintain. A depth is applied to all drawable objects and clicking can be added to any object that inherits from the provided clickable class. Along with this text was made easier to display and the default functions for selecing colors were expanded upon.
 
 ### Built With
 
