@@ -18,10 +18,10 @@
 
 <!-- PROJECT LOGO -->
 <br />
-  <h3 align="center">Inventory Manager</h3>
+  <h3 align="center">Card Match</h3>
 
   <p align="center">
-    An inventory management program for managing stock of a automotive parts store.
+    A card match game implimented using OpenGL.
     <br />
     <a href="https://github.com/blakemardon/Card-Match-Game"><strong>Explore the docs »</strong></a>
   </p>
